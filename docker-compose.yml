@@ -1,0 +1,30 @@
+version: '3'
+services:
+  postgres:
+    image: 'postgres:9.6.1'
+    restart: always
+    expose:
+      - '5432'
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_HOST: test
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: test
+    volumes:
+      - ./database-data:/var/lib/postgresql/data
+
+  server:
+    build: .
+    volumes:
+      - ./:/app
+    ports:
+      - 8080:3000
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    command: ['npm', 'start']
