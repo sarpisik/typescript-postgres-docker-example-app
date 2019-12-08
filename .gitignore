@@ -6,4 +6,5 @@ tmp/
 temp/
 
 .env
-database-data/npm-debug.log
+database-data/
+npm-debug.log
