@@ -8,3 +8,4 @@ temp/
 .env
 database-data/
 npm-debug.log
+*.log

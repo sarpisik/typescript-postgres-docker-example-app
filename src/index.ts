@@ -5,6 +5,7 @@ import * as bodyParser from 'body-parser';
 import * as helmet from 'helmet';
 import * as cors from 'cors';
 import routes from './routes';
+import { handleError } from './lib/middleware';
 
 dbConnection
   .then(async _connection => {
@@ -20,6 +21,9 @@ dbConnection
 
     // all routes
     app.use('/', routes);
+
+    // error handler
+    app.use(handleError);
 
     // start express server
     app.listen(PORT, () =>
