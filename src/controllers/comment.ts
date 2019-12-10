@@ -43,7 +43,7 @@ export const create = async (
 ) => {
   try {
     // Movie already validated in prior middleware.
-    const movie = await getRepository(Movie).findOne({ title: _comment.movie });
+    const movie = await getRepository(Movie).findOne(_comment.movie);
 
     const comment: CommentInterface = await getRepository(Comment).save({
       ..._comment,

@@ -24,7 +24,8 @@ interface Movie extends Base {
   comments: Comment[];
 }
 
-interface Comment extends Base {
+interface Comment {
+  author: string;
   content: string;
   movie: Movie;
 }

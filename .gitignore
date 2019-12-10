@@ -9,3 +9,6 @@ temp/
 database-data/
 npm-debug.log
 *.log
+
+.nyc_output
+coverage

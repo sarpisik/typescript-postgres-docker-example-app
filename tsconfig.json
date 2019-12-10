@@ -4,10 +4,11 @@
     "module": "commonjs",
     "lib": ["es2017"],
     "outDir": "dist",
-    "rootDir": "src",
+    "rootDir": ".",
     "noImplicitAny": true,
     "strictNullChecks": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
-  }
+  },
+  "exclude": ["dist", "node_modules"]
 }
