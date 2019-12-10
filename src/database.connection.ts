@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { createConnection, Connection, ConnectionOptions } from 'typeorm';
+import { ConnectionOptions } from 'typeorm';
 
 const connectionOpts: ConnectionOptions = {
   type: 'postgres',
@@ -20,6 +20,4 @@ const connectionOpts: ConnectionOptions = {
   }
 };
 
-const connection: Promise<Connection> = createConnection(connectionOpts);
-
-export default connection;
+export default connectionOpts;

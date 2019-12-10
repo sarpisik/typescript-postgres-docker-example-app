@@ -7,18 +7,15 @@ services:
       - '5432'
     ports:
       - '5432:5432'
-    environment:
-      POSTGRES_HOST: test
-      POSTGRES_USER: test
-      POSTGRES_PASSWORD: test
-      POSTGRES_DB: test
+    env_file:
+      - docker.env
     volumes:
       - ./database-data:/var/lib/postgresql/data
 
   server:
     build: .
     volumes:
-      - ./:/app
+      - ./:/usr/src/app
     ports:
       - 8080:3000
     env_file:

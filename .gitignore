@@ -5,7 +5,7 @@ dist/
 tmp/
 temp/
 
-.env
+*.env
 database-data/
 npm-debug.log
 *.log

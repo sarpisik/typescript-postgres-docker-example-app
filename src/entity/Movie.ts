@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, Unique } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  Unique,
+  OneToMany
+} from 'typeorm';
+import { Comment } from './Comment';
 
 @Entity()
 @Unique(['title'])
@@ -41,4 +48,10 @@ export class Movie {
 
   @Column({ default: 0 })
   imdbRating: number;
+
+  @OneToMany(
+    _type => Comment,
+    (comment: Comment) => comment.movie
+  )
+  comments: Comment[];
 }

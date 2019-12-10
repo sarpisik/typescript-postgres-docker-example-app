@@ -30,7 +30,7 @@
     "winston": "^3.2.1"
   },
   "scripts": {
-    "start": "nodemon src/index.ts",
+    "start": "nodemon",
     "lint": "tslint -c tslint.json 'src/**/*.ts'"
   }
 }
