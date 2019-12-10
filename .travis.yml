@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+- lts/*
+script:
+- npm run test
+deploy:
+  provider: heroku
+  api_key:
+    secure: SQJbv9Sjy4nDJqiZOnNDo7Ocr5/HQ1Zi8Lf8q4hFLxW1W5n9paVY6L0Xqjbu2duGWFP0NLgSmtJExgCA1PFUqJ88MoW8YSEmWQFwlEGpshdXLtiYLA+YCvZh8DiNxsS4nWGAKPnyxj+uOTVdR+yPr4SsJ/JUA5Z1tXTpGnLINpom52wzJWJ3xwBX0Kdo3ZooJ5Hqqd6Zd2k7rGjXGU+GdUECjeRRdEn+VFlM/sTGvUG/ibpRPT8FfZBXr7KOkwN1gr8iDFVOzrM+LOCSZg/knay4ngJeyn3F+WnDpUVoACD1eEkkecvNJU0SD4eDGtLBmOzvpDRq/U4Cyvc+UnTJ7O2rQ2XvnLbv0hzaj+6bKzEMpp8iqdKfYvIsB0rC7fjpV78EhxmYDlcA5/w3Qnl+TxYEf7agmTzWTbILM1yxqQLZNSytb7D+FxCQLMdFLavEMQisStYIZoPZjpDeOQ+vkpTd/n1VBdS2tQOtuTdl2q2V8qJIntkvrPBoCTsHiuwvklH97SuHU7la4ZcVDCeXOJUIKYK1173LXYCUGj0l5YZtWJBn/YJtLYkYtGU0IsZiMM9EObe009S4ZgcMSk4dHYc5ZXg0b0wEsU9OtLxG8Ntx9WVNSfwVNEd7llotk0+iO22bCI3F+tC2u/jHun+ZkdRPFucQp8B0USHU4TBqPc8=

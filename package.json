@@ -37,7 +37,8 @@
     "winston": "^3.2.1"
   },
   "scripts": {
-    "start": "nodemon",
+    "start": "ts-node ./src/server.ts",
+    "dev": "nodemon",
     "test:mocha": "nyc --reporter=html mocha dist/test/**/*.test.js",
     "test": "rimraf dist && tsc && npm run test:mocha",
     "lint": "tslint -c tslint.json 'src/**/*.ts'"
