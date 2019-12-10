@@ -2,40 +2,22 @@ import { createSandbox, SinonSandbox, spy, assert, match } from 'sinon';
 import * as typeorm from 'typeorm';
 import { Movie } from '../../src/controllers';
 import { Request, Response, NextFunction } from 'express';
-import { HttpException } from '../../src/lib/exceptions';
-
-let movie = {
-    title: 'Guardians of the Galaxy',
-    year: 2014,
-    language: 'English',
-    country: 'USA'
-  },
-  movies = [movie];
-
-let error = {
-  withStatus: new HttpException(new Error('Something went wrong.'), 400),
-  unKnown: new HttpException(new Error('Because status not passed.'))
-};
-
-let req: Partial<Request> = { params: { id: '1234' } },
-  res: Partial<Response> = {
-    send: spy(),
-    locals: { movie },
-    sendStatus: spy()
-  },
-  next: Partial<NextFunction> = spy();
+import { express, movie, movies, error } from './instances';
 
 describe('Movie controller', () => {
-  let sandbox: SinonSandbox;
+  let { req, res, next } = express,
+    sandbox: SinonSandbox,
+    setSandbox = () => {
+      sandbox = createSandbox();
+    },
+    restoreSandbox = () => {
+      sandbox.restore();
+    };
 
   describe('all', () => {
-    beforeEach(() => {
-      sandbox = createSandbox();
-    });
+    beforeEach(setSandbox);
 
-    afterEach(() => {
-      sandbox.restore();
-    });
+    afterEach(restoreSandbox);
 
     it('should return error', async () => {
       const spyOnFind = spy(() => Promise.reject(error.withStatus));
@@ -61,19 +43,15 @@ describe('Movie controller', () => {
   });
 
   describe('one', () => {
-    beforeEach(() => {
-      sandbox = createSandbox();
-    });
+    beforeEach(setSandbox);
 
-    afterEach(() => {
-      sandbox.restore();
-    });
+    afterEach(restoreSandbox);
 
     it('should return error unknown', async () => {
       const spyOnFind = spy(() => Promise.reject(error.withStatus));
-      sandbox
-        .stub(typeorm, 'getRepository')
-        .returns({ findOne: spyOnFind } as any);
+      sandbox.stub(typeorm, 'getRepository').returns({
+        findOne: spyOnFind
+      } as any);
 
       await Movie.one(<Request>req, <Response>res, <NextFunction>next);
 
@@ -82,9 +60,9 @@ describe('Movie controller', () => {
 
     it('should return error on movie not found', async () => {
       const spyOnFind = spy(() => Promise.resolve(null));
-      sandbox
-        .stub(typeorm, 'getRepository')
-        .returns({ findOne: spyOnFind } as any);
+      sandbox.stub(typeorm, 'getRepository').returns({
+        findOne: spyOnFind
+      } as any);
 
       await Movie.one(<Request>req, <Response>res, <NextFunction>next);
 
@@ -104,13 +82,9 @@ describe('Movie controller', () => {
   });
 
   describe('create', () => {
-    beforeEach(() => {
-      sandbox = createSandbox();
-    });
+    beforeEach(setSandbox);
 
-    afterEach(() => {
-      sandbox.restore();
-    });
+    afterEach(restoreSandbox);
 
     it('should return error unknown', async () => {
       const spyOnFind = spy(() => Promise.reject(error.unKnown));
@@ -136,19 +110,15 @@ describe('Movie controller', () => {
   });
 
   describe('remove', () => {
-    beforeEach(() => {
-      sandbox = createSandbox();
-    });
+    beforeEach(setSandbox);
 
-    afterEach(() => {
-      sandbox.restore();
-    });
+    afterEach(restoreSandbox);
 
     it('should return error unknown', async () => {
       const spyOnFind = spy(() => Promise.reject(error.unKnown));
-      sandbox
-        .stub(typeorm, 'getRepository')
-        .returns({ delete: spyOnFind } as any);
+      sandbox.stub(typeorm, 'getRepository').returns({
+        delete: spyOnFind
+      } as any);
 
       await Movie.remove(<Request>req, <Response>res, <NextFunction>next);
 

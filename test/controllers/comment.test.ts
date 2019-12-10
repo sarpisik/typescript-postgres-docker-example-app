@@ -1,14 +1,13 @@
 import { createSandbox, SinonSandbox, spy, assert, match } from 'sinon';
 import * as typeorm from 'typeorm';
-import { Movie, Comment } from '../../src/controllers';
+import { Comment } from '../../src/controllers';
 import { Request, Response, NextFunction } from 'express';
 import { express, movie, comment, comments, error } from './instances';
 
 describe('Comment controller', () => {
-  const { req, res, next } = express;
-  let sandbox: SinonSandbox;
-
-  const setSandbox = () => {
+  let { req, res, next } = express,
+    sandbox: SinonSandbox,
+    setSandbox = () => {
       sandbox = createSandbox();
     },
     restoreSandbox = () => {
