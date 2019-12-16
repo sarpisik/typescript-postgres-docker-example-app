@@ -8,6 +8,7 @@ const connectionOpts: ConnectionOptions = {
   username: process.env.POSTGRES_USER || 'postgres',
   password: process.env.POSTGRES_PASSWORD || 'postgres',
   database: process.env.POSTGRES_DB || 'test',
+  ssl: true,
   synchronize: true,
   logging: false,
   entities: [`${__dirname}/entity/*.ts`],
