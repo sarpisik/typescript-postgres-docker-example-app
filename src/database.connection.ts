@@ -3,11 +3,7 @@ import { ConnectionOptions } from 'typeorm';
 
 const connectionOpts: ConnectionOptions = {
   type: 'postgres',
-  host: process.env.DATABASE_URL || 'localhost',
-  port: Number(process.env.POSTGRES_PORT) || 5432,
-  username: process.env.POSTGRES_USER || 'postgres',
-  password: process.env.POSTGRES_PASSWORD || 'postgres',
-  database: process.env.POSTGRES_DB || 'test',
+  url: process.env.DATABASE_URL,
   ssl: true,
   synchronize: true,
   logging: false,
