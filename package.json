@@ -37,10 +37,12 @@
     "winston": "^3.2.1"
   },
   "scripts": {
-    "start": "ts-node ./src/server.ts",
+    "start": "node dist/src/index.js",
+    "postinstall": "tsc",
     "dev": "nodemon",
     "test:mocha": "nyc --reporter=html mocha dist/test/**/*.test.js",
     "test": "rimraf dist && tsc && npm run test:mocha",
-    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\""
   }
 }

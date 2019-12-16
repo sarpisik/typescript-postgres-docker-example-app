@@ -16,20 +16,15 @@ export const createRule = (
 
 export const setRuleOptional = (chain: ValidationChain) => chain.optional();
 
-export const setRuleOptionalString = (chain: ValidationChain) =>
-  setRuleOptional(chain).isString();
+export const setRuleOptionalString = (chain: ValidationChain) => setRuleOptional(chain).isString();
 
-export const validateDoc = (Document: string) => (
-  field: string,
-  condition: boolean
-) => async (value: string) => {
-  const document:
-    | MovieInterface
-    | CommentInterface
-    | undefined = await getRepository(
+export const validateDoc = (Document: string) => (field: string, condition: boolean) => async (
+  value: string
+) => {
+  const document: MovieInterface | CommentInterface | undefined = await getRepository(
     Document === 'movie' ? Movie : Comment
   ).findOne({
-    [field]: value
+    [field]: value,
   });
   return !!document === condition ? Promise.reject() : Promise.resolve();
 };
@@ -40,8 +35,7 @@ export const validateCommentBy = validateDoc('comment');
 
 export const onNotFound = (document: string) => ({
   name: 'Error',
-  message: document + ' not found.'
+  message: document + ' not found.',
 });
 
-export const capitalizeLetter = (text: string) =>
-  text.replace(/^./, text[0].toUpperCase());
+export const capitalizeLetter = (text: string) => text.replace(/^./, text[0].toUpperCase());

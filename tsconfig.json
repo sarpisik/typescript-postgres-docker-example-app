@@ -1,14 +1,21 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
     "module": "commonjs",
-    "lib": ["es2017"],
-    "outDir": "dist",
-    "rootDir": ".",
+    "esModuleInterop": true,
+    "target": "ES2017",
     "noImplicitAny": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["node_modules/*", "src/types/*"]
+    },
+    "lib": ["es2017"],
+    "rootDir": ".",
     "strictNullChecks": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules", "src/test"]
 }

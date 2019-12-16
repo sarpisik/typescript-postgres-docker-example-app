@@ -9,7 +9,7 @@ import { onNotFound } from '../lib/helpers';
 export const all = async (_req: Request, res: Response, next: NextFunction) => {
   try {
     const comments: CommentInterface[] = await getRepository(Comment).find({
-      relations: ['movies']
+      relations: ['movies'],
     });
     res.send(comments);
   } catch (error) {
@@ -17,15 +17,11 @@ export const all = async (_req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export const one = async (
-  { params }: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const one = async ({ params }: Request, res: Response, next: NextFunction) => {
   try {
-    const comment: CommentInterface | undefined = await getRepository(
-      Comment
-    ).findOne(params.id, { relations: ['movie'] });
+    const comment: CommentInterface | undefined = await getRepository(Comment).findOne(params.id, {
+      relations: ['movie'],
+    });
 
     if (comment) return res.send(comment);
 
@@ -36,18 +32,14 @@ export const one = async (
   }
 };
 
-export const create = async (
-  { body: _comment }: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const create = async ({ body: _comment }: Request, res: Response, next: NextFunction) => {
   try {
     // Movie already validated in prior middleware.
     const movie = await getRepository(Movie).findOne(_comment.movie);
 
     const comment: CommentInterface = await getRepository(Comment).save({
       ..._comment,
-      movie
+      movie,
     });
     res.send(comment);
   } catch (error) {
@@ -55,11 +47,7 @@ export const create = async (
   }
 };
 
-export const remove = async (
-  { params: { id } }: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const remove = async ({ params: { id } }: Request, res: Response, next: NextFunction) => {
   try {
     await getRepository(Comment).delete(id);
 

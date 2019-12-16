@@ -8,7 +8,7 @@ import { onNotFound } from '../lib/helpers';
 export const all = async (_req: Request, res: Response, next: NextFunction) => {
   try {
     const movies: MovieInterface[] = await getRepository(Movie).find({
-      relations: ['comments']
+      relations: ['comments'],
     });
     res.send(movies);
   } catch (error) {
@@ -16,15 +16,11 @@ export const all = async (_req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-export const one = async (
-  { params }: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const one = async ({ params }: Request, res: Response, next: NextFunction) => {
   try {
-    const movie: MovieInterface | undefined = await getRepository(
-      Movie
-    ).findOne(params.id, { relations: ['comments'] });
+    const movie: MovieInterface | undefined = await getRepository(Movie).findOne(params.id, {
+      relations: ['comments'],
+    });
 
     if (movie) return res.send(movie);
 
@@ -35,26 +31,16 @@ export const one = async (
   }
 };
 
-export const create = async (
-  _req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const create = async (_req: Request, res: Response, next: NextFunction) => {
   try {
-    const movie: MovieInterface = await getRepository(Movie).save(
-      res.locals.movie
-    );
+    const movie: MovieInterface = await getRepository(Movie).save(res.locals.movie);
     res.send(movie);
   } catch (error) {
     next(new HttpException(error));
   }
 };
 
-export const remove = async (
-  { params: { id } }: Request,
-  res: Response,
-  next: NextFunction
-) => {
+export const remove = async ({ params: { id } }: Request, res: Response, next: NextFunction) => {
   try {
     await getRepository(Movie).delete(id);
 

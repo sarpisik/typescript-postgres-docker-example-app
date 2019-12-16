@@ -25,11 +25,7 @@ interface ValidationError {
 
 const errorFormatter: ErrorFormatter = ({ msg }: ValidationError) => msg + '.';
 
-export const validateFields = (
-  req: Request,
-  _res: Response,
-  next: NextFunction
-) => {
+export const validateFields = (req: Request, _res: Response, next: NextFunction) => {
   const errors = validationResult(req).formatWith(errorFormatter);
 
   !errors.isEmpty()
@@ -37,7 +33,7 @@ export const validateFields = (
         new HttpException(
           {
             name: 'Validation',
-            message: 'Invalid fields: '.concat(errors.array().join(' '))
+            message: 'Invalid fields: '.concat(errors.array().join(' ')),
           },
           500
         )
@@ -71,7 +67,7 @@ export const fetchExternalMovieDetails = async (
               'ratings',
               'released',
               'year',
-              'imdbRating'
+              'imdbRating',
             ].reduce((movie, propertyName) => {
               const isValue = movie[propertyName];
               // If the value exist, pass.
@@ -79,7 +75,7 @@ export const fetchExternalMovieDetails = async (
               if (isValue) return movie;
               movie[propertyName] = data[capitalizeLetter(propertyName)];
               return movie;
-            }, movie)
+            }, movie),
           }
         : movie;
 
@@ -97,5 +93,5 @@ export const handleError = (
 ) =>
   res.status(status).send({
     status,
-    message
+    message,
   });

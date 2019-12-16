@@ -16,8 +16,8 @@ const connectionOpts: ConnectionOptions = {
   cli: {
     entitiesDir: `${__dirname}/entity`,
     migrationsDir: `${__dirname}/migration`,
-    subscribersDir: `${__dirname}/subscriber`
-  }
+    subscribersDir: `${__dirname}/subscriber`,
+  },
 };
 
 export default connectionOpts;

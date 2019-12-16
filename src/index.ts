@@ -1,10 +1,10 @@
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import connectionOptions from './database.connection';
-import * as express from 'express';
+import express from 'express';
 import * as bodyParser from 'body-parser';
-import * as helmet from 'helmet';
-import * as cors from 'cors';
+import helmet from 'helmet';
+import cors from 'cors';
 import routes from './routes';
 import { handleError } from './lib/middleware';
 
@@ -12,7 +12,7 @@ import { handleError } from './lib/middleware';
   while (attempts) {
     try {
       await createConnection(connectionOptions);
-      const PORT: number = 3000;
+      const PORT = process.env.PORT || 3000;
       // create express app
       const app = express();
       app.use(bodyParser.json());
@@ -31,7 +31,11 @@ import { handleError } from './lib/middleware';
       // start express server
       app.listen(PORT, () =>
         console.log(
-          `Server started in container on port ${PORT}, Open http://localhost:8080/ to consume APIs.`
+          `Server started in container on port ${PORT}.`.concat(
+            process.env.NODE_ENV === 'production'
+              ? ''
+              : 'Open http://localhost:8080/ to consume APIs.'
+          )
         )
       );
       break;

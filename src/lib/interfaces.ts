@@ -30,8 +30,4 @@ interface Comment {
   movie: Movie;
 }
 
-export {
-  Base as BaseInterface,
-  Movie as MovieInterface,
-  Comment as CommentInterface
-};
+export { Base as BaseInterface, Movie as MovieInterface, Comment as CommentInterface };

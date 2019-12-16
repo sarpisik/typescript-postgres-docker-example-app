@@ -3,7 +3,7 @@ import {
   validateMovieBy,
   setRuleOptional,
   setRuleOptionalString,
-  validateCommentBy
+  validateCommentBy,
 } from './helpers';
 
 export const movieRules = {
@@ -19,7 +19,7 @@ export const movieRules = {
     'ratings.value',
     'released',
     'year',
-    'imdbRating'
+    'imdbRating',
   ].map(propertyName => {
     if (propertyName === 'title')
       return createRule(
@@ -42,11 +42,7 @@ export const movieRules = {
         `${propertyName} field is invalid`
       );
 
-    return createRule(
-      propertyName,
-      setRuleOptionalString,
-      `${propertyName} field is invalid`
-    );
+    return createRule(propertyName, setRuleOptionalString, `${propertyName} field is invalid`);
   }),
 
   delete: [
@@ -59,8 +55,8 @@ export const movieRules = {
           // Movie must be exist so passing false bool.
           .custom(validateMovieBy('id', false)),
       'Invalid id field'
-    )
-  ]
+    ),
+  ],
 };
 
 export const commentRules = {
@@ -96,6 +92,6 @@ export const commentRules = {
           // Comment must be exist so passing false bool.
           .custom(validateCommentBy('id', false)),
       'Invalid id field'
-    )
-  ]
+    ),
+  ],
 };
