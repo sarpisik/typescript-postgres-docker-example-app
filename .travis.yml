@@ -2,7 +2,9 @@ language: node_js
 node_js:
   - lts/*
 script:
-  - npm run test
+  - nyc npm run test && nyc report --reporter=text-lcov | coveralls
+after_script:
+  - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coverage
 deploy:
   provider: heroku
   api_key:
