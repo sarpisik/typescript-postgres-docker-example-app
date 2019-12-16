@@ -1,5 +1,7 @@
 import 'reflect-metadata';
 import { ConnectionOptions } from 'typeorm';
+import { Movie } from './entity/Movie';
+import { Comment } from './entity/Comment';
 
 const connectionOpts: ConnectionOptions = {
   type: 'postgres',
@@ -7,7 +9,7 @@ const connectionOpts: ConnectionOptions = {
   ssl: true,
   synchronize: true,
   logging: false,
-  entities: [`${__dirname}/entity/*.ts`],
+  entities: [Movie, Comment],
   migrations: [`${__dirname}/migration/**/*.ts`],
   subscribers: [`${__dirname}/subscriber/**/*.ts`],
   cli: {
