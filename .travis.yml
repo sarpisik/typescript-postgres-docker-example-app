@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - lts/*
 script:
-  - nyc npm run test:clean && npm run test:mocha && nyc report --reporter=text-lcov | coveralls
+  - nyc npm run test:mocha && nyc report --reporter=text-lcov | coveralls
 after_script:
   - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coverage
 deploy:
