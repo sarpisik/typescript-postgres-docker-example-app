@@ -8,6 +8,13 @@ import cors from 'cors';
 import routes from './routes';
 import { handleError } from './lib/middleware';
 
+const wait = (time: number) =>
+  new Promise((resolve, _reject) => {
+    setTimeout(() => {
+      resolve();
+    }, time);
+  });
+
 (async (attempts: number) => {
   while (attempts) {
     try {
@@ -40,9 +47,11 @@ import { handleError } from './lib/middleware';
       );
       break;
     } catch (error) {
-      attempts--;
       console.error('Remained attempts to restart: ' + attempts);
       console.error(error);
+      // Try to reconnect db after 5 sec.
+      await wait(5000);
+      attempts--;
     }
   }
 })(5);
