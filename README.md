@@ -4,16 +4,14 @@
 [![Coverage Status](https://coveralls.io/repos/github/sarpisik/typescript-postgres-docker-example-app/badge.svg?branch=master)](https://coveralls.io/github/sarpisik/typescript-postgres-docker-example-app?branch=master)
 [![GitHub license](https://img.shields.io/github/license/sarpisik/typescript-postgres-docker-example-app)](https://github.com/sarpisik/typescript-postgres-docker-example-app/blob/master/LICENSE)
 
-## Usage
-
-The application serving simple REST-API and crud operations on saved movies and comments related to a movie. It stands on [OMDB API](http://www.omdbapi.com/) and fetches missing details of user entered movie before storing to database.
+An application serving simple REST-API and crud operations on saved movies and comments related to a movie. It stands on [OMDB API](http://www.omdbapi.com/) and fetches missing details of user entered movie before storing to database.
 
 ## Installation
 
-I use docker as development environment so you need to have installed [Docker Engine](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/) in your local environment.
+The application build on docker as development environment so you need to have installed [Docker Engine](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/) in your local environment.
 
 ```bash
-npm i
+npm install
 ```
 
 ## Usage
@@ -52,6 +50,44 @@ or you can create those variables in your travis dashboard. Also you need to pro
 after_script:
   - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coverage
 ```
+
+### Routes
+
+#### Movie
+
+- GET /movies
+
+  Returns array of stored movies.
+
+- GET /movies/:id
+
+  Returns a movie by passed id.
+
+- POST /movies
+
+  Creates a new movie and returns.
+
+- DELETE /movies/:id
+
+  Deletes the movie by passed id and deletes related comments if exist.
+
+#### Comment
+
+- GET /comments
+
+  Returns array of stored comments.
+
+- GET /comments/:id
+
+  Returns a comment by passed id.
+
+- POST /comments
+
+  Creates a new comment and returns.
+
+- DELETE /comments/:id
+
+  Deletes the comment by passed id.
 
 ## License
 
