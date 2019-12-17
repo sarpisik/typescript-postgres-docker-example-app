@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/sarpisik/typescript-postgres-docker-example-app.svg?branch=master)](https://travis-ci.org/sarpisik/typescript-postgres-docker-example-app)
 [![Coverage Status](https://coveralls.io/repos/github/sarpisik/typescript-postgres-docker-example-app/badge.svg?branch=master)](https://coveralls.io/github/sarpisik/typescript-postgres-docker-example-app?branch=master)
+[![GitHub license](https://img.shields.io/github/license/sarpisik/typescript-postgres-docker-example-app)](https://github.com/sarpisik/typescript-postgres-docker-example-app/blob/master/LICENSE)
 
 ## Usage
 
@@ -51,3 +52,7 @@ or you can create those variables in your travis dashboard. Also you need to pro
 after_script:
   - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coverage
 ```
+
+## License
+
+[MIT](https://github.com/sarpisik/typescript-postgres-docker-example-app/blob/master/LICENSE)
