@@ -60,16 +60,16 @@ export const movieRules = {
 };
 
 export const commentRules = {
-  create: ['title', 'content', 'movie'].map(propertyName => {
+  create: ['author', 'content', 'movie'].map(propertyName => {
     if (propertyName === 'movie')
       return createRule(
         propertyName,
         chain =>
           chain
             .notEmpty()
-            .withMessage('movie must be entered.')
+            .withMessage('movie must be entered')
             .isString()
-            .withMessage('movie must be a string.')
+            .withMessage('movie must be a string')
             // Movie must be exist so passing false bool.
             .custom(validateMovieBy(propertyName, false)),
         'Movie does not exists'
@@ -77,7 +77,12 @@ export const commentRules = {
 
     return createRule(
       propertyName,
-      chain => chain.isString().withMessage(`${propertyName} is not a string`),
+      chain =>
+        chain
+          .notEmpty()
+          .withMessage(`${propertyName} must be entered`)
+          .isString()
+          .withMessage(`${propertyName} is not a string`),
       `${propertyName} field is invalid`
     );
   }),

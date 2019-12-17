@@ -45,7 +45,8 @@ export class Movie {
 
   @OneToMany(
     _type => Comment,
-    (comment: Comment) => comment.movie
+    (comment: Comment) => comment.movie,
+    { onDelete: 'CASCADE' }
   )
   comments: Comment[];
 }

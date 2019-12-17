@@ -9,7 +9,7 @@ import { onNotFound } from '../lib/helpers';
 export const all = async (_req: Request, res: Response, next: NextFunction) => {
   try {
     const comments: CommentInterface[] = await getRepository(Comment).find({
-      relations: ['movies'],
+      relations: ['movie'],
     });
     res.send(comments);
   } catch (error) {

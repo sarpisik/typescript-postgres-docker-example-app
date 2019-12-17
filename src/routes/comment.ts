@@ -8,6 +8,6 @@ const router = Router();
 router.get('/', Comment.all);
 router.get('/:id', Comment.one);
 router.post('/', commentRules.create, validateFields, Comment.create);
-router.delete('/', commentRules.delete, validateFields, Comment.remove);
+router.delete('/:id', commentRules.delete, validateFields, Comment.remove);
 
 export default router;
