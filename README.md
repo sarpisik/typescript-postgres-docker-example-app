@@ -35,13 +35,13 @@ and server is ready on: [http://localhost:8080/](http://localhost:8080/)
 
 ### Production
 
-This app has configured already to CI / CD within [Travis CI](https://travis-ci.org/) and deploy on [Heroku](https://www.heroku.com/). If you like to use it, please open .travis.yml file and change belows fields:
+This app has configured already to CI / CD within [Travis CI](https://travis-ci.org/) and deploy on [Heroku](https://www.heroku.com/). If you like to use it, please visit [Heroku Deployment](https://docs.travis-ci.com/user/deployment/heroku/) and create your own secure key:
 
 ```yml
 deploy:
   provider: heroku
   api_key:
-    secure: $your_secure
+    secure: your_secure_key
   app: $your_app_name
 ```
 
